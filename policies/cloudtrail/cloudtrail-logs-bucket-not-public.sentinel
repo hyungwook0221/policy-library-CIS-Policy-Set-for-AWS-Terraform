@@ -15,7 +15,7 @@ import "collection/maps" as maps
 
 const = {
 	"policy_name":                            "cloudtrail-logs-bucket-not-public",
-	"message":                                "S3 bucket used to store cloudtrail logs must not be publicly accessible. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/cloudtrail-controls.html#cloudtrail-6 for more details.",
+	"message":                                "S3 버킷 used to store cloudtrail logs must not be 퍼블릭ly accessible. 자세한 내용은 https://docs.aws.amazon.com/securityhub/latest/사용자guide/cloudtrail-controls.html#cloudtrail-6 를 을 참조하세요.",
 	"resource_aws_cloudtrail":                "aws_cloudtrail",
 	"resource_aws_s3_bucket":                 "aws_s3_bucket",
 	"resource_s3_bucket_public_access_block": "aws_s3_bucket_public_access_block",

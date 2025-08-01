@@ -15,7 +15,7 @@ import "collection/maps" as maps
 
 const = {
 	"policy_name":              "rds-encryption-at-rest-enabled",
-	"message":                  "Attribute 'storage_encrypted' must be set to true for 'aws_db_instance' resources. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/rds-controls.html#rds-3 for more details.",
+	"message":                  "'aws_db_instance' 리소스의 'storage_encrypted' 속성은 true로 설정되어야 합니다. 자세한 내용은 https://docs.aws.amazon.com/securityhub/latest/userguide/rds-controls.html#rds-3 을 참조하세요.",
 	"resource_aws_db_instance": "aws_db_instance",
 	"storage_encrypted":        "storage_encrypted",
 }

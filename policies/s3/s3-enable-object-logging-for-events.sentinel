@@ -22,7 +22,7 @@ param event_type default "ReadOnly"
 
 const = {
 	"policy_name":               "s3-enable-object-logging-for-events",
-	"message":                   "Resources of type 'aws_s3_bucket' must have object logging enabled for read/write events through cloudtrail resources. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/s3-controls.html#s3-22 for more details",
+	"message":                   "Resources of type 'aws_s3_버킷' must have object 로깅 활성화됨 for read/write events through cloudtrail 리소스. 자세한 내용은 https://docs.aws.amazon.com/securityhub/latest/사용자guide/s3-controls.html#s3-22 를 을 참조하세요",
 	"resource_s3_bucket":        "aws_s3_bucket",
 	"resource_cloudtrail":       "aws_cloudtrail",
 	"bucket":                    "bucket",

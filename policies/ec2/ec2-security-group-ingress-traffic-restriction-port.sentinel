@@ -21,7 +21,7 @@ param port default 22
 
 const = {
 	"policy_name":                              "ec2-security-group-ingress-traffic-restriction",
-	"message":                                  "Security group rules should not allow ingress from 0.0.0.0/0 or ::/0 to port " + string(port),
+	"message":                                  "보안 그룹 규칙은 0.0.0.0/0 또는 ::/0에서 포트 " + string(port) + "로의 인그레스를 허용해서는 안 됩니다",
 	"resource_security_group_rule":             "aws_security_group_rule",
 	"resource_security_group":                  "aws_security_group",
 	"resource_vpc_security_group_ingress_rule": "aws_vpc_security_group_ingress_rule",
@@ -98,9 +98,9 @@ violations = aws_security_group_rule_violations + aws_security_group_violations 
 
 message = const.message
 if port == 22 {
-	message += " Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/ec2-controls.html#ec2-13 for more details."
+	message += ". 자세한 내용은 https://docs.aws.amazon.com/securityhub/latest/userguide/ec2-controls.html#ec2-13 을 참조하세요."
 } else if port == 3389 {
-	message += " Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/ec2-controls.html#ec2-14 for more details."
+	message += ". 자세한 내용은 https://docs.aws.amazon.com/securityhub/latest/userguide/ec2-controls.html#ec2-14 를 참조하세요."
 }
 summary = {
 	"policy_name": const.policy_name,

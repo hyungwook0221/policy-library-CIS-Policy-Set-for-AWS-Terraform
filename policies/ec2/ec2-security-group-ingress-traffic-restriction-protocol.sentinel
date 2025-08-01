@@ -24,7 +24,7 @@ param prevent_unknown_ipv6_ingress default false
 
 const = {
 	"policy_name":                              "ec2-security-group-ingress-traffic-restriction",
-	"message":                                  "Security group rules should not allow ingress to port 22 and 3389 from",
+	"message":                                  "Security 그룹 rules 허용해서는 안 됩니다 ingress to 포트 22 and 3389 from",
 	"resource_security_group_rule":             "aws_security_group_rule",
 	"resource_security_group":                  "aws_security_group",
 	"resource_vpc_security_group_ingress_rule": "aws_vpc_security_group_ingress_rule",

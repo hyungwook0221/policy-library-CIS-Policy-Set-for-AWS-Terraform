@@ -18,7 +18,7 @@ const = {
 	"resource_aws_kms_key": "aws_kms_key",
 	"enable_key_rotation":  "enable_key_rotation",
 	"is_enabled":           "is_enabled",
-	"message":              "Attribute 'enable_key_rotation' must be enabled for 'aws_kms_key' resources. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/kms-controls.html#kms-4 for more details.",
+	"message":              "'aws_kms_key' 리소스의 'enable_key_rotation' 속성이 활성화되어야 합니다. 자세한 내용은 https://docs.aws.amazon.com/securityhub/latest/userguide/kms-controls.html#kms-4 를 참조하세요.",
 }
 
 # Variables

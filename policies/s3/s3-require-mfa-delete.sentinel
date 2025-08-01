@@ -25,7 +25,7 @@ const = {
 	"status":     "status",
 	"mfa_delete": "mfa_delete",
 	"enabled":    "Enabled",
-	"message":    "All 'aws_s3_bucket' resources should be linked to 'aws_s3_bucket_versioning' resources with 'mfa_delete' set to 'Enabled'. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/s3-controls.html#s3-20 for more details.",
+	"message":    "모든 'aws_s3_bucket' 리소스는 'mfa_delete'가 'Enabled'로 설정된 'aws_s3_bucket_versioning' 리소스와 연결되어야 합니다. 자세한 내용은 https://docs.aws.amazon.com/securityhub/latest/userguide/s3-controls.html#s3-20 을 참조하세요.",
 }
 
 # Functions

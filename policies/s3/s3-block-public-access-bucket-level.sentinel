@@ -20,7 +20,7 @@ const = {
 	"policy_name":                                "s3-block-public-access-bucket-level",
 	"module_address":                             "module_address",
 	"address":                                    "address",
-	"message":                                    "Bucket level Amazon S3 block public access settings are not compliant. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/s3-controls.html#s3-8 for more details.",
+	"message":                                    "버킷 레벨 Amazon S3 퍼블릭 액세스 차단 설정이 규정을 준수하지 않습니다. 자세한 내용은 https://docs.aws.amazon.com/securityhub/latest/사용자guide/s3-controls.html#s3-8 를 을 참조하세요.",
 	"resource_aws_s3_bucket":                     "aws_s3_bucket",
 	"resource_aws_s3_bucket_acl":                 "aws_s3_bucket_acl",
 	"module_prefix":                              "module.",

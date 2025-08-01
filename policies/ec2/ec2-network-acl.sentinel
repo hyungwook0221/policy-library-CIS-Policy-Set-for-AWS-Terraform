@@ -31,7 +31,7 @@ const = {
 	"egress":                        "egress",
 	"resource_aws_network_acl_rule": "aws_network_acl_rule",
 	"resource_aws_network_acl":      "aws_network_acl",
-	"message":                       "Network Acl rules should not allow ingress from 0.0.0.0/0 or ::/0 to ports " + strings.join(blocked_ports, ",") + ".",
+	"message":                       "Network Acl rules 허용해서는 안 됩니다 ingress from 0.0.0.0/0 or ::/0 to 포트s " + strings.join(blocked_ports, ",") + ".",
 }
 
 # Functions

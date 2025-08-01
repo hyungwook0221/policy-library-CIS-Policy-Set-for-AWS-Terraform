@@ -16,7 +16,7 @@ import "collection/maps" as maps
 const = {
 	"resource_aws_cloudtrail":         "aws_cloudtrail",
 	"policy_name":                     "cloudtrail-server-side-encryption-enabled",
-	"message":                         "Attribute 'kms_key_id' must be present for 'aws_cloudtrail' resources. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/cloudtrail-controls.html#cloudtrail-2 for more details.",
+	"message":                         "'aws_cloudtrail' 리소스에는 'kms_key_id' 속성이 있어야 합니다. 자세한 내용은 https://docs.aws.amazon.com/securityhub/latest/사용자guide/cloudtrail-controls.html#cloudtrail-2 를 를 참조하세요.",
 	"cloudtrail_attribute_kms_key_id": "kms_key_id",
 	"constant_value":                  "constant_value",
 }

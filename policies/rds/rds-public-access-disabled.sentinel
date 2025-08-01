@@ -15,7 +15,7 @@ import "collection/maps" as maps
 
 const = {
 	"policy_name":              "rds-public-access-disabled",
-	"message":                  "Attribute 'publicly_accessible' must be set to false for 'aws_db_instance' resources. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/rds-controls.html#rds-2 for more details.",
+	"message":                  "속성 '퍼블릭ly_accessible' false로 설정되어야 합니다 for 'aws_db_인스턴스' 리소스. 자세한 내용은 https://docs.aws.amazon.com/securityhub/latest/사용자guide/rds-controls.html#rds-2 를 을 참조하세요.",
 	"resource_aws_db_instance": "aws_db_instance",
 	"publicly_accessible":      "publicly_accessible",
 }

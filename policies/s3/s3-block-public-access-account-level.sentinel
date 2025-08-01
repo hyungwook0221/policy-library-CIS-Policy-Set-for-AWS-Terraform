@@ -13,7 +13,7 @@ import "report" as report
 # Constants
 const = {
 	"policy_name":             "s3-block-public-access-account-level",
-	"message":                 "Account level Amazon S3 block public access settings are not compliant. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/s3-controls.html#s3-1 for more details.",
+	"message":                 "계정 레벨 Amazon S3 퍼블릭 액세스 차단 설정이 규정을 준수하지 않습니다. 자세한 내용은 https://docs.aws.amazon.com/securityhub/latest/userguide/s3-controls.html#s3-1 을 참조하세요.",
 	"ignore_public_acls":      "ignore_public_acls",
 	"restrict_public_buckets": "restrict_public_buckets",
 	"block_public_acls":       "block_public_acls",

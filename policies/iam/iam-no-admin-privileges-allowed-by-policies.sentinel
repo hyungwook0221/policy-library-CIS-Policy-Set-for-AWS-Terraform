@@ -90,12 +90,12 @@ build_violation_object = func(resource_addr, module_addr, message) {
 
 policy_document_violations = fetch_policies_allowing_admin_privileges()
 policy_document_violations_list = map policy_document_violations as _, v {
-	build_violation_object(v.address, v.module_address, "IAM policies should not be allow full '*' administrative privileges. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/iam-controls.html#iam-1 for more details.")
+	build_violation_object(v.address, v.module_address, "IAM 정책은 전체 '*' 관리자 권한을 허용해서는 안 됩니다. 자세한 내용은 https://docs.aws.amazon.com/securityhub/latest/userguide/iam-controls.html#iam-1 을 참조하세요.")
 }
 
 inline_policy_violations = verify_iam_policy_resources_with_inline_policies()
 inline_policy_violations_list = map inline_policy_violations as _, v {
-	build_violation_object(v.address, v.module_address, "All aws_iam_policy resources must get their policy from an instance of the data_iam_policy_document data source.")
+	build_violation_object(v.address, v.module_address, "모든 aws_iam_policy 리소스는 data_iam_policy_document 데이터 소스 인스턴스에서 정책을 가져와야 합니다.")
 }
 
 summary = {

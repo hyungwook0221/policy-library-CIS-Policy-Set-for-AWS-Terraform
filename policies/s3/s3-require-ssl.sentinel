@@ -24,8 +24,8 @@ const = {
 	"module_prefix":                     "module.",
 	"values":                            "values",
 	"variable":                          "variable",
-	"policy_document_violation_message": "S3 general purpose buckets should require requests to use SSL. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/s3-controls.html#s3-5 for more details.",
-	"inline_policy_violation_message":   "All aws_s3_bucket_policy resources must get their policy from an instance of the aws_iam_policy_document data source.",
+	"policy_document_violation_message": "S3 범용 버킷은 SSL을 사용하는 요청을 요구해야 합니다. 자세한 내용은 https://docs.aws.amazon.com/securityhub/latest/사용자guide/s3-controls.html#s3-5 를 를 를 참조하세요.",
+	"inline_policy_violation_message":   "모든 aws_s3_bucket_policy 리소스는 aws_iam_policy_document 데이터 소스 인스턴스에서 정책을 가져와야 합니다.",
 }
 
 # Functions

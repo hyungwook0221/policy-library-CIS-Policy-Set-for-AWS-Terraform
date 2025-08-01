@@ -25,14 +25,14 @@ down_arrow = "\u21b3"
 
 // Strings
 root_module = "root"
-overall_result = arrow_icon + space + arrow_icon + space + "Overall Result: "
-success_message = "This result means that all resources have passed the policy check for the policy "
-failure_message = "This result means that not all resources passed the policy check and the protected behavior is not allowed for the policy "
-found_zero_resource_violations = "Found 0 resource violations"
-resource_violations = "resource violations"
-module_header = "Module name: "
-resource_address = "Resource Address: "
-failed = "failed"
+overall_result = arrow_icon + space + arrow_icon + space + "전체 결과: "
+success_message = "모든 리소스가 정책 검사를 통과했습니다. 정책명: "
+failure_message = "일부 리소스가 정책 검사를 통과하지 못했으며, 보호된 동작이 허용되지 않습니다. 정책명: "
+found_zero_resource_violations = "리소스 위반 사항 0개 발견"
+resource_violations = "개의 리소스 위반 사항"
+module_header = "모듈명: "
+resource_address = "리소스 주소: "
+failed = "실패"
 
 generate_policy_report = func(summary) {
 
@@ -54,7 +54,7 @@ generate_policy_report = func(summary) {
 		report += failure_message + summary.policy_name + dot
 		report += new_line
 		report += new_line
-		report += "Found " + string(length(summary.violations)) + space + resource_violations
+		report += string(length(summary.violations)) + resource_violations + " 발견"
 		report += new_line
 
 		module_map = get_module_violations_map(summary)
