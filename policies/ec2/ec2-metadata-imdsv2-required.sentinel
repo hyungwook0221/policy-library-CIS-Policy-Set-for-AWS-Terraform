@@ -15,7 +15,7 @@ import "collection/maps" as maps
 
 const = {
 	"policy_name": "ec2-metadata-imdsv2-required",
-	"message":     "속성 'http_tokens' must be set to 'required' for all 'aws_인스턴스' 리소스 if 'metadata_options' is used.Else 'aws_ec2_인스턴스_metadata_defaults' resource 가져야 합니다 'http_tokens' set to 'required'. 자세한 내용은 https://docs.aws.amazon.com/securityhub/latest/사용자guide/ec2-controls.html#ec2-8 를 을 참조하세요.",
+	"message":     "'metadata_options'를 사용하는 경우 모든 'aws_instance' 리소스의 'http_tokens' 속성은 'required'로 설정되어야 합니다. 그렇지 않으면 'aws_ec2_instance_metadata_defaults' 리소스에서 'http_tokens'를 'required'로 설정해야 합니다. 자세한 내용은 https://docs.aws.amazon.com/securityhub/latest/userguide/ec2-controls.html#ec2-8 을 참조하세요.",
 	"aws_ec2_instance_metadata_defaults": "aws_ec2_instance_metadata_defaults",
 	"aws_instance":                       "aws_instance",
 	"metadata_options":                   "metadata_options",

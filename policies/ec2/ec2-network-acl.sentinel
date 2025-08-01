@@ -31,7 +31,7 @@ const = {
 	"egress":                        "egress",
 	"resource_aws_network_acl_rule": "aws_network_acl_rule",
 	"resource_aws_network_acl":      "aws_network_acl",
-	"message":                       "Network Acl rules 허용해서는 안 됩니다 ingress from 0.0.0.0/0 or ::/0 to 포트s " + strings.join(blocked_ports, ",") + ".",
+	"message":                       "네트워크 ACL 규칙은 0.0.0.0/0 또는 ::/0에서 포트 " + strings.join(blocked_ports, ",") + "로의 인그레스를 허용해서는 안 됩니다",
 }
 
 # Functions
@@ -89,7 +89,7 @@ violations = aws_network_acl_rule_violations + aws_network_acl_violations
 
 message = const.message
 if blocked_ports contains 22 or blocked_ports contains 3389 {
-	message += " Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/ec2-controls.html#ec2-21 for more details."
+	message += ". 자세한 내용은 https://docs.aws.amazon.com/securityhub/latest/userguide/ec2-controls.html#ec2-21 을 참조하세요."
 }
 summary = {
 	"policy_name": "ec2-network-acl",

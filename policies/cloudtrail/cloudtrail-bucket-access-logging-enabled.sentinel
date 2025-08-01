@@ -15,7 +15,7 @@ import "collection/maps" as maps
 
 const = {
 	"policy_name":                "cloudtrail-bucket-access-logging-enabled",
-	"message":                    "Cloudtrail S3 버킷 must have access 로깅 활성화됨. 자세한 내용은 https://docs.aws.amazon.com/securityhub/latest/사용자guide/cloudtrail-controls.html#cloudtrail-7 를 을 참조하세요.",
+	"message":                    "CloudTrail S3 버킷은 액세스 로깅이 활성화되어야 합니다. 자세한 내용은 https://docs.aws.amazon.com/securityhub/latest/userguide/cloudtrail-controls.html#cloudtrail-7 을 참조하세요.",
 	"resource_aws_cloudtrail":    "aws_cloudtrail",
 	"resource_s3_bucket_logging": "aws_s3_bucket_logging",
 	"constant_value":             "constant_value",

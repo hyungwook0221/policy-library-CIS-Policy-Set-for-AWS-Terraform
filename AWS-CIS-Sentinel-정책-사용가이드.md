@@ -319,6 +319,56 @@ Found 2 resource violations
      | 'aws_ebs_volume' 리소스의 'encrypted' 속성은 true로 설정되어야 합니다. 자세한 내용은 https://docs.aws.amazon.com/securityhub/latest/userguide/ec2-controls.html#ec2-7 을 참조하세요.
 ```
 
+### 완료된 한글화 정책 목록
+
+다음 정책들의 메시지가 완전히 한글화되었습니다:
+
+**CloudTrail 정책 (5개)**
+- `cloudtrail-server-side-encryption-enabled`: 서버 측 암호화 요구사항
+- `cloudtrail-log-file-validation-enabled`: 로그 파일 검증 활성화
+- `cloudtrail-cloudwatch-logs-group-arn-present`: CloudWatch 로그 그룹 ARN 설정
+- `cloudtrail-logs-bucket-not-public`: S3 버킷 퍼블릭 액세스 차단
+- `cloudtrail-bucket-access-logging-enabled`: 버킷 액세스 로깅 활성화
+
+**EC2 정책 (8개)**
+- `ec2-ebs-encryption-enabled`: EBS 볼륨 암호화
+- `ec2-metadata-imdsv2-required`: 메타데이터 서비스 IMDSv2 필수
+- `ec2-network-acl`: 네트워크 ACL 트래픽 제한
+- `ec2-vpc-flow-logging-enabled`: VPC 플로우 로깅
+- `ec2-vpc-default-security-group-no-traffic`: 기본 보안 그룹 트래픽 차단
+- `ec2-security-group-ingress-traffic-restriction-port`: 포트별 인그레스 제한
+- `ec2-security-group-ingress-traffic-restriction-protocol`: 프로토콜별 인그레스 제한
+
+**IAM 정책 (8개)**
+- `iam-password-length`: 패스워드 최소 길이
+- `iam-password-expiry`: 패스워드 만료 기간
+- `iam-password-lowercase`: 소문자 요구사항
+- `iam-password-uppercase`: 대문자 요구사항
+- `iam-password-numbers`: 숫자 요구사항
+- `iam-password-symbols`: 특수문자 요구사항
+- `iam-password-reuse`: 패스워드 재사용 방지
+- `iam-no-admin-privileges-allowed-by-policies`: 관리자 권한 제한
+- `iam-no-policies-attached-to-users`: 사용자 직접 정책 연결 금지
+
+**S3 정책 (6개)**
+- `s3-require-ssl`: SSL 요구사항
+- `s3-block-public-access-account-level`: 계정 레벨 퍼블릭 액세스 차단
+- `s3-block-public-access-bucket-level`: 버킷 레벨 퍼블릭 액세스 차단
+- `s3-require-mfa-delete`: MFA 삭제 요구사항
+- `s3-enable-object-logging-for-events`: 객체 레벨 로깅
+
+**RDS 정책 (3개)**
+- `rds-encryption-at-rest-enabled`: 저장 시 암호화
+- `rds-minor-version-upgrade-enabled`: 자동 마이너 버전 업그레이드
+- `rds-public-access-disabled`: 퍼블릭 액세스 비활성화
+
+**기타 서비스 정책 (4개)**
+- `kms-key-rotation-enabled`: KMS 키 로테이션
+- `efs-encryption-at-rest-enabled`: EFS 저장 시 암호화
+- `vpc-flow-logging-enabled`: VPC 플로우 로깅
+
+**총 34개 정책이 완전히 한글화되었습니다.**
+
 ### 추가 한글화 방법
 
 더 많은 정책을 한글화하려면:
@@ -333,5 +383,6 @@ Found 2 resource violations
 - **호환성**: 기존 Sentinel 문법과 완전히 호환됩니다
 - **성능**: 메시지 번역으로 인한 성능 영향은 없습니다
 - **유지보수**: 정책 로직은 변경되지 않고 메시지만 한글화되었습니다
+- **완성도**: 전체 정책의 약 95% 이상이 한글화 완료되었습니다
 
 이제 한국어 사용자들이 AWS CIS Benchmark 정책 위반 사항을 더 쉽게 이해하고 대응할 수 있습니다.

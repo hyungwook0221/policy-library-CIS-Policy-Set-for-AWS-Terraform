@@ -24,7 +24,7 @@ param prevent_unknown_ipv6_ingress default false
 
 const = {
 	"policy_name":                              "ec2-security-group-ingress-traffic-restriction",
-	"message":                                  "Security 그룹 rules 허용해서는 안 됩니다 ingress to 포트 22 and 3389 from",
+	"message":                                  "보안 그룹 규칙은 포트 22와 3389로의 인그레스를 허용해서는 안 됩니다",
 	"resource_security_group_rule":             "aws_security_group_rule",
 	"resource_security_group":                  "aws_security_group",
 	"resource_vpc_security_group_ingress_rule": "aws_vpc_security_group_ingress_rule",
@@ -102,11 +102,11 @@ violations = aws_security_group_rule_violations + aws_security_group_violations 
 
 message = const.message
 if prevent_unknown_ipv4_ingress and prevent_unknown_ipv6_ingress {
-	message += " from '0.0.0.0/0' or '::/0'"
+	message += " '0.0.0.0/0' 또는 '::/0'에서"
 } else if prevent_unknown_ipv4_ingress {
-	message += " from '0.0.0.0/0'. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/ec2-controls.html#ec2-53 for more details."
+	message += " '0.0.0.0/0'에서. 자세한 내용은 https://docs.aws.amazon.com/securityhub/latest/userguide/ec2-controls.html#ec2-53 을 참조하세요."
 } else {
-	message += " from '::/0'. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/ec2-controls.html#ec2-54 for more details."
+	message += " '::/0'에서. 자세한 내용은 https://docs.aws.amazon.com/securityhub/latest/userguide/ec2-controls.html#ec2-54 를 참조하세요."
 }
 summary = {
 	"policy_name": const.policy_name,
