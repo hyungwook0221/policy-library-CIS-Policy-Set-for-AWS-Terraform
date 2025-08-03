@@ -1,0 +1,69 @@
+# {{POLICY_NAME}} 정책
+# 설명: {{POLICY_DESCRIPTION}}
+# 작성자: {{AUTHOR}}
+# 생성일: {{DATE}}
+# 버전: {{VERSION}}
+
+# Copyright (c) {{ORGANIZATION}}
+# SPDX-License-Identifier: {{LICENSE}}
+
+# Imports
+import "tfplan/v2" as tfplan
+import "tfconfig/v2" as tfconfig
+import "tfstate/v2" as tfstate
+import "tfresources" as tf
+import "report" as report
+import "collection" as collection
+import "collection/maps" as maps
+
+# Parameters
+{{#PARAMETERS}}
+# {{PARAMETER_DESCRIPTION}}
+param {{PARAMETER_NAME}} default {{PARAMETER_DEFAULT}}
+{{/PARAMETERS}}
+
+# Constants
+const = {
+    "policy_name": "{{POLICY_ID}}",
+    "message": "{{VIOLATION_MESSAGE}}",
+    {{#ADDITIONAL_CONSTANTS}}
+    "{{CONSTANT_NAME}}": "{{CONSTANT_VALUE}}",
+    {{/ADDITIONAL_CONSTANTS}}
+}
+
+# Functions
+{{#FUNCTIONS}}
+{{FUNCTION_NAME}} = func({{FUNCTION_PARAMETERS}}) {
+    {{FUNCTION_BODY}}
+}
+{{/FUNCTIONS}}
+
+# Variables
+{{RESOURCE_QUERY}}
+
+violations = {{VIOLATION_LOGIC}}
+
+summary = {
+    "policy_name": const.policy_name,
+    "violations": map violations as _, v {
+        {
+            "address": v.address,
+            "module_address": v.module_address,
+            "message": const.message,
+        }
+    },
+}
+
+# Outputs
+print(report.generate_policy_report(summary))
+
+# Rules
+{{#RULES}}
+{{RULE_NAME}} = rule {
+    {{RULE_LOGIC}}
+}
+{{/RULES}}
+
+main = rule {
+    {{MAIN_RULE_LOGIC}}
+}

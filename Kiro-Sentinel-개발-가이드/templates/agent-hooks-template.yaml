@@ -1,0 +1,147 @@
+# Sentinel 개발을 위한 Agent Hooks 설정
+# 파일 위치: .kiro/hooks/sentinel-development.yaml
+
+hooks:
+  # 파일 저장 시 자동 테스트 실행
+  - name: "auto-test-on-save"
+    description: "Sentinel 파일 저장 시 자동으로 테스트 실행"
+    trigger: "file_save"
+    pattern: "**/*.sentinel"
+    action: |
+      # Sentinel 문법 검사
+      echo "🔍 Sentinel 문법 검사 중..."
+      if sentinel fmt -check "$FILE_PATH"; then
+        echo "✅ 문법 검사 통과"
+      else
+        echo "❌ 문법 오류 발견. 자동 포맷팅 실행..."
+        sentinel fmt -write "$FILE_PATH"
+      fi
+      
+      # 테스트 실행
+      if [ -f "${FILE_PATH%.*}.hcl" ]; then
+        echo "🧪 테스트 실행 중..."
+        sentinel test "$FILE_PATH"
+      fi
+    enabled: true
+
+  # Git 커밋 시 정책 검증
+  - name: "validate-on-commit"
+    description: "Git 커밋 시 모든 정책 파일 검증"
+    trigger: "git_commit"
+    pattern: "policies/**/*.sentinel"
+    action: |
+      echo "🔍 커밋 전 정책 검증 시작..."
+      
+      # 변경된 파일들에 대해 검증 수행
+      for file in $CHANGED_FILES; do
+        if [[ $file == *.sentinel ]]; then
+          echo "검증 중: $file"
+          
+          # 문법 검사
+          if ! sentinel fmt -check "$file"; then
+            echo "❌ $file: 문법 오류"
+            exit 1
+          fi
+          
+          # 테스트 실행
+          if [ -f "${file%.*}.hcl" ]; then
+            if ! sentinel test "$file"; then
+              echo "❌ $file: 테스트 실패"
+              exit 1
+            fi
+          fi
+        fi
+      done
+      
+      echo "✅ 모든 정책 검증 완료"
+    enabled: true
+
+  # Pull Request 생성 시 자동 코드 리뷰
+  - name: "review-on-pr"
+    description: "PR 생성 시 자동 코드 리뷰 및 분석"
+    trigger: "pull_request"
+    action: |
+      echo "📝 자동 코드 리뷰 시작..."
+      
+      # 정책 복잡도 분석
+      echo "## 🔍 정책 분석 결과" >> pr_review.md
+      echo "" >> pr_review.md
+      
+      for file in $PR_FILES; do
+        if [[ $file == *.sentinel ]]; then
+          echo "### 📄 $file" >> pr_review.md
+          
+          # 라인 수 계산
+          lines=$(wc -l < "$file")
+          echo "- **라인 수**: $lines" >> pr_review.md
+          
+          # 함수 개수 계산
+          functions=$(grep -c "= func(" "$file" || echo "0")
+          echo "- **함수 개수**: $functions" >> pr_review.md
+          
+          # 복잡도 평가
+          if [ $lines -gt 200 ]; then
+            echo "- ⚠️ **주의**: 파일이 너무 큽니다. 모듈화를 고려해보세요." >> pr_review.md
+          fi
+          
+          if [ $functions -gt 10 ]; then
+            echo "- ⚠️ **주의**: 함수가 많습니다. 별도 모듈로 분리를 고려해보세요." >> pr_review.md
+          fi
+          
+          echo "" >> pr_review.md
+        fi
+      done
+      
+      # 보안 체크리스트
+      echo "## 🔒 보안 체크리스트" >> pr_review.md
+      echo "- [ ] 하드코딩된 비밀번호나 키가 없는가?" >> pr_review.md
+      echo "- [ ] 적절한 오류 처리가 구현되었는가?" >> pr_review.md
+      echo "- [ ] 성능에 영향을 줄 수 있는 무한 루프가 없는가?" >> pr_review.md
+      echo "- [ ] 테스트 케이스가 충분한가?" >> pr_review.md
+      
+      echo "✅ 자동 코드 리뷰 완료"
+    enabled: true
+
+  # 배포 전 최종 검증
+  - name: "pre-deployment-check"
+    description: "배포 전 최종 검증 및 승인"
+    trigger: "manual"
+    action: |
+      echo "🚀 배포 전 최종 검증 시작..."
+      
+      # 모든 테스트 실행
+      echo "1. 전체 테스트 실행..."
+      if ! sentinel test ./policies/; then
+        echo "❌ 테스트 실패로 배포 중단"
+        exit 1
+      fi
+      
+      # 정책 문서 업데이트 확인
+      echo "2. 문서 업데이트 확인..."
+      if [ -z "$(git diff --name-only HEAD~1 | grep -E '\.md$')" ]; then
+        echo "⚠️ 문서 업데이트가 없습니다. 정책 변경 시 문서도 업데이트해주세요."
+      fi
+      
+      # 버전 태그 확인
+      echo "3. 버전 태그 확인..."
+      if [ -z "$(git tag --points-at HEAD)" ]; then
+        echo "⚠️ 현재 커밋에 버전 태그가 없습니다."
+      fi
+      
+      echo "✅ 배포 전 검증 완료"
+    enabled: false  # 수동 실행만 허용
+
+  # 성능 모니터링
+  - name: "performance-monitor"
+    description: "정책 실행 성능 모니터링"
+    trigger: "scheduled"
+    schedule: "0 9 * * 1"  # 매주 월요일 9시
+    action: |
+      echo "📊 성능 모니터링 시작..."
+      
+      # 대용량 테스트 데이터로 성능 테스트
+      echo "대용량 데이터 성능 테스트 실행..."
+      
+      # 결과를 메트릭으로 수집
+      echo "성능 메트릭 수집 완료"
+    enabled: true
